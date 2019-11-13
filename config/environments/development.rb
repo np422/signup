@@ -1,9 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts << 'zakapp1'
-  config.mqhost = 'zakapp2'
 
-  config.logger = GELF::Logger.new("zaklog1", 12201, "WAN", { :facility => "signup" })
+  config.mqhost     = 'zakapp2'
+  config.mquser     = 'admin'
+  config.mqpassword = 'admin'
+  config.mqqueue    = 'customer_queue'
+
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Graylog2.new
+  config.logger = GELF::Logger.new('zaklog1', 12_201, 'LAN', facility: 'approval_gui')
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

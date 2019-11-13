@@ -29,7 +29,6 @@ class CustomersController < ApplicationController
     respond_to do |format|
       @customer.tracking_id = SecureRandom.uuid
       if @customer.save
-        @customer.publish
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
