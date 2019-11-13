@@ -1,7 +1,7 @@
 class Customer < ApplicationRecord
 
   def publish
-    connection = Bunny.new(host: 'localhost')
+    connection = Bunny.new(host: Rails.configuration.mqhost)
     connection.start
     channel = connection.create_channel
     queue_name = 'customer_queue'
