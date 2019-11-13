@@ -8,5 +8,7 @@ class Customer < ApplicationRecord
     message = self.to_json
     exchange = channel.queue(queue_name, durable: true)
     exchange.publish(message)
+    n = GELF::Notifier.new('zaklog1', 12_201)
+    n.notify!(short_message: "Published new user #{name}", full_message: message)
   end
 end
