@@ -3,6 +3,8 @@ Rails.application.configure do
   config.hosts << 'zakapp1'
   config.mqhost = 'zakapp2'
 
+  config.logger = GELF::Logger.new("zaklog1", 12201, "WAN", { :facility => "signup" })
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.

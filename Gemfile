@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 gem 'bunny'
+gem 'gelf'
+gem 'lograge'
 
 group :development do
   gem "capistrano", "~> 3.11", require: false
