@@ -8,6 +8,6 @@ class Customer < ApplicationRecord
     connection.start
     connection.create_channel.queue(Rails.configuration.mqqueue, durable: true).publish(to_json)
     Rails.logger.info(short_message: "Published new user #{name}",
-                      full_message: message)
+                      full_message: to_json)
   end
 end
